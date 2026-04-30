@@ -33,20 +33,19 @@
             <label>Tipo</label>
             <br />
             <button
-              *ngIf="type === movementType.INCOME"
-              (click)="type = movementType.EXPENSE"
               type="button"
-              class="btn btn-primary btn-block"
+              (click)="
+                type =
+                  type === movementType.INCOME
+                    ? movementType.EXPENSE
+                    : movementType.INCOME
+              "
+              class="btn btn-block"
+              [ngClass]="
+                type === movementType.INCOME ? 'btn-primary' : 'btn-warning'
+              "
             >
-              Ingreso
-            </button>
-            <button
-              *ngIf="type === movementType.EXPENSE"
-              (click)="type = movementType.INCOME"
-              type="button"
-              class="btn btn-warning btn-block"
-            >
-              Egreso
+              {{ type === movementType.INCOME ? "Ingreso" : "Egreso" }}
             </button>
           </div>
 
@@ -54,23 +53,11 @@
           <button
             type="submit"
             class="btn btn-success mr-2"
-            [disabled]="incomeForm.invalid"
-            *ngIf="!loading"
+            [disabled]="loading || incomeForm.invalid"
           >
-            <i class="fa fa-save"></i>
-            Agregar
+            <i [ngClass]="loading ? 'fa fa-spin fa-sync' : 'fa fa-save'"></i>
+            {{ loading ? "Guardando..." : "Agregar" }}
           </button>
-
-          <button
-            type="submit"
-            class="btn btn-success mr-2"
-            [disabled]="true"
-            *ngIf="loading"
-          >
-            <i class="fa fa-spin fa-sync"></i>
-            Guardando...
-          </button>
-
           <button type="reset" class="btn btn-light">Cancelar</button>
         </form>
       </div>

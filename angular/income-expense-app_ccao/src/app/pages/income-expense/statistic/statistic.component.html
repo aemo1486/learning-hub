@@ -15,9 +15,7 @@
           </div>
         </div>
 
-        <p class="text-muted mt-3 mb-0">
-          {{ incomes }} items
-        </p>
+        <p class="text-muted mt-3 mb-0">{{ incomes }} items</p>
       </div>
     </div>
   </div>
@@ -38,9 +36,7 @@
           </div>
         </div>
 
-        <p class="text-muted mt-3 mb-0">
-          {{ expenses }} items
-        </p>
+        <p class="text-muted mt-3 mb-0">{{ expenses }} items</p>
       </div>
     </div>
   </div>
@@ -70,15 +66,17 @@
     </div>
   </div>
 
-  <div class="col-12 p-5" *ngIf="incomes > 0 || expenses > 0">
-    <div class="card card-statistics">
-      <div class="card-body">
-        <h3 class="card-title mb-3">Gráfica</h3>
+  @if (incomes > 0 || expenses > 0) {
+    <div class="col-12 p-5">
+      <div class="card card-statistics">
+        <div class="card-body">
+          <h3 class="card-title mb-3">Gráfica</h3>
 
-        <div style="height: 320px; position: relative;">
-          <canvas #chartCanvas></canvas>
+          <div style="height: 320px; position: relative">
+            <canvas #chartCanvas></canvas>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  }
 </div>
